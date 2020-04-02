@@ -1,0 +1,23 @@
+﻿<UserControl xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"  
+             x:Class="RtfPdfCreator.Views.RtfEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <dxre:ContentToRtfConverter x:Key="ContentToRtfConverter" />
+        <dxre:RtfToContentConverter x:Key="RtfToContentConverter" />
+    </UserControl.Resources>
+    <Grid Background="Gold">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <dxb:BarManager Name="BarManager1" Grid.Column="0">
+            <dxre:RichEditControl x:Name="RichEditControl" 
+                                  Content="{Binding RtfContent, Converter={StaticResource RtfToContentConverter }}"  Height="Auto" Width="Auto" 
+                                  BarManager="{Binding ElementName=BarManager1}" ActiveViewType="Simple" />
+        </dxb:BarManager>
+    </Grid>
+</UserControl>
